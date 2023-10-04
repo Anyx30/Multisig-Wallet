@@ -8,9 +8,9 @@ contract NyxWallet {
     // Events
     event Deposited(address indexed _sender, uint _amount, uint _balance);
     event TxnSubmitted(address indexed _owner, uint indexed _txId, address indexed _to, uint _value, bytes _data);
-    event TxnConfirmed(address indexed _owner, address indexed _txId);
-    event TxnRevoked(address indexed _owner, address indexed _txId);
-    event TxnExecuted(address indexed _owner, address indexed _txId);
+    event TxnConfirmed(address indexed _owner, uint indexed _txId);
+    event TxnRevoked(address indexed _owner, uint indexed _txId);
+    event TxnExecuted(address indexed _owner, uint indexed _txId);
 
     struct transaction {
         address to;
@@ -55,6 +55,7 @@ contract NyxWallet {
             isOwner[owner] = true;
             owners.push(owner);
         }
+        quorum = _quorumReq;
     }
 
     receive() external payable {
